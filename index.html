@@ -10,18 +10,18 @@
 </head>
 <body>
   <div id="app">正在加载，请稍候...</div>
-  <script>
-  window.$docsify = {
-    name: 'BaiYongQiang',
-    loadSidebar: true,
-    subMaxLevel: 2,
-    auto2top: true,
-    // 强行指定侧边栏路径，防止某些环境下找不到文件
-    alias: {
-      '/.*/_sidebar.md': '/_sidebar.md'
+ <script>
+    window.$docsify = {
+      name: 'BaiYongQiang',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      // 关键增加：强制从根目录读取文件
+      basePath: '/', 
+      // 强制指定侧边栏文件名
+      homepage: 'README.md'
     }
-  }
-</script>
+  </script>
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 
 </body>
