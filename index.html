@@ -11,16 +11,18 @@
 <body>
   <div id="app">正在加载，请稍候...</div>
   <script>
-    window.$docsify = {
-      name: 'BaiYongQiang',
-      loadSidebar: true,
-      subMaxLevel: 2,
-      coverpage: false,
-      onlyCover: false,
-      auto2top: true
+  window.$docsify = {
+    name: 'BaiYongQiang',
+    loadSidebar: true,
+    subMaxLevel: 2,
+    auto2top: true,
+    // 强行指定侧边栏路径，防止某些环境下找不到文件
+    alias: {
+      '/.*/_sidebar.md': '/_sidebar.md'
     }
-  </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  }
+</script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 
 </body>
 </html>
