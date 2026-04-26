@@ -11,15 +11,27 @@
 <body>
   <div id="app">正在加载，请稍候...</div>
   <script>
-    window.$docsify = {
-      name: 'BaiYongQiang',
-      repo: 'https://github.com/w1105860179/baiyongqiang.github.io',
-      loadNavbar: true,   // 加载 _navbar.md
-      coverpage: true,    // 加载 _coverpage.md
-      onlyCover: false,    // 封面独立一页
-      auto2top: true      // 切换页面后自动回到顶部
-    }
-  </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  window.$docsify = {
+    name: 'BaiYongQiang',
+    // 1. 删除 repo 这一行，右上角的 GitHub 绿三角就会消失
+    loadSidebar: true,   // 2. 开启侧边栏
+    subMaxLevel: 2,      // 侧边栏自动提取页面的二级标题
+    coverpage: true,     
+    onlyCover: false,    // 建议设为 false，这样向下滚动时能看到侧边栏
+    auto2top: true
+  }
+</script>
+
+<style>
+  /* 去除 Docsify 默认的顶部渐变背景 */
+  section.cover {
+    background: #ffffff !important; /* 设为纯白，或者你喜欢的任何颜色 */
+  }
+  /* 让侧边栏文字更黑更清晰 */
+  .sidebar ul li a {
+    color: #333 !important;
+    font-weight: normal;
+  }
+</style>
 </body>
 </html>
