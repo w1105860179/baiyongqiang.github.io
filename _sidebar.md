@@ -8,4 +8,4 @@
   * [健康](health.md)
 
 * **Economy and Investment**
-*   * [逻辑](invest-logic.md)
+   * [逻辑](invest-logic.md)
