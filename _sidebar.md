@@ -1,7 +1,7 @@
-* **About**
+**About**
   * [我的简介](about.md)
 
-* **Arttificial Intelligence**
+ **Arttificial Intelligence**
   * [AI 探索](ai.md)
   
 * **Health**
