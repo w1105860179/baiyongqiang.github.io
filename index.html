@@ -7,6 +7,31 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+  /* 调整侧边栏标题颜色，让它更有层次感 */
+  .sidebar ul li strong {
+    color: #2c3e50 !important;
+    font-size: 1.1rem;
+  }
+  
+  /* 调整链接点击后的颜色 */
+  .sidebar ul li a {
+    color: #505d6b;
+    font-weight: normal;
+  }
+
+  /* 悬停时的视觉反馈 */
+  .sidebar ul li a:hover {
+    color: #42b983;
+    text-decoration: underline;
+  }
+
+  /* 选中状态的加粗 */
+  .sidebar ul li.active > a {
+    color: #42b983 !important;
+    font-weight: bold !important;
+  }
+</style>
 </head>
 <body>
   <div id="app">正在加载，请稍候...</div>
