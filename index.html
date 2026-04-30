@@ -175,12 +175,13 @@
     © BaiYongQiang · Digital Garden 2026
   </div>
 
-  <script>
-    function go(path){
-      // 跳转逻辑：Docsify 默认使用 hash 路由
-      window.location.href = "/#/" + path;
-    }
-  </script>
+ <script>
+  function go(path) {
+    // 去掉开头的斜杠，直接操作 hash
+    // 这样点击时，浏览器地址栏会变成 .../#/ai
+    window.location.hash = "/" + path;
+  }
+</script>
 
 </body>
 </html>
