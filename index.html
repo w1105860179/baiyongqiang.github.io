@@ -4,134 +4,87 @@
   <meta charset="UTF-8">
   <title>BaiYongQiang | 零售数字化专家</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
 
   <style>
-    /* 1. 全局与背景逻辑 */
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #0f1115 !important;
-      color: #ffffff;
-      line-height: 1.6;
+      background-color: #0f1115 !important;
+      color: #eeeeee !important;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* 首页锁定滚动，详情页允许滚动 */
-    body:not(.is-article) { overflow: hidden; }
-    body:not(.is-article) #app { display: none !important; }
-
-    /* 2. 找回你喜欢的导航样式 */
-    .nav-bar {
-      position: absolute;
-      top: 40px;
-      right: 8%;
-      z-index: 100;
-    }
-    .nav-bar a {
-      color: #888;
-      text-decoration: none;
-      margin-left: 30px;
-      font-size: 15px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .nav-bar a:hover {
-      color: #fff;
-      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    /* 首页容器 */
+    #main-cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #0f1115;
     }
 
-    /* 3. 左上角品牌标识（详情页显示） */
+    /* 物理屏蔽 Docsify 的报错区域 */
+    #app { display: none; } 
+    body.is-article #app { display: block !important; }
+    body.is-article #main-cover { display: none !important; }
+
+    /* 导航栏 */
+    .nav-bar { padding: 40px 8% 0 0; text-align: right; }
+    .nav-bar a { color: #ddd; text-decoration: none; margin-left: 30px; font-size: 15px; }
+
+    /* 品牌返回键 */
     .brand-logo {
-      position: fixed;
-      top: 30px;
-      left: 40px;
-      z-index: 9999;
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 700;
+      position: fixed; top: 30px; left: 40px; z-index: 9999;
+      color: #fff; text-decoration: none; font-size: 18px; font-weight: bold;
       display: none;
     }
     body.is-article .brand-logo { display: block; }
 
-    /* 4. 找回原本的 Hero 标题渐变 */
-    .hero {
-      height: 55vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 10%;
-    }
+    /* Hero 区域 */
+    .hero { padding: 60px 10% 40px; }
     .hero h1 {
-      font-size: 64px;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: -2px;
-      background: linear-gradient(to bottom, #fff, #888);
+      font-size: 64px; margin: 0;
+      background: linear-gradient(to bottom, #ffffff, #999);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero p {
-      color: #888;
-      margin-top: 20px;
-      font-size: 20px;
-      max-width: 600px;
-    }
+    .hero p { color: #bbb; font-size: 18px; margin-top: 15px; }
 
-    /* 5. 找回原本的卡片质感 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      padding: 0 10%;
-    }
+    /* 卡片 */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 10%; }
     .card {
-      background: #1a1d24;
-      border-radius: 16px;
-      padding: 40px 30px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      border: 1px solid #222;
-      text-decoration: none;
-      display: block;
+      background: #161920; border-radius: 12px; padding: 30px;
+      border: 1px solid #333; text-decoration: none; transition: 0.3s;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      background: #222633;
-      border-color: #444;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-    }
-    .card h3 { margin: 0 0 15px; font-size: 22px; color: #fff; }
-    .card p { color: #777; font-size: 15px; margin: 0; }
+    .card:hover { border-color: #777; transform: translateY(-5px); }
+    .card h3 { color: #fff; margin: 0 0 10px; }
+    .card p { color: #999; font-size: 14px; }
 
-    /* 6. 详情页排版优化 */
-    .markdown-section {
-      max-width: 800px !important;
-      margin: 0 auto !important;
-      padding: 120px 25px 80px !important;
+    /* 底部区域：显著调亮字体 */
+    .bottom-section { text-align: center; padding-bottom: 50px; }
+    .en-slogan { 
+      font-family: "Georgia", serif; font-style: italic; 
+      font-size: 18px; color: #ffffff !important; /* 纯白，保证绝对清晰 */
+      margin-bottom: 30px;
+      opacity: 0.9;
     }
-    .markdown-section h1 { color: #fff !important; border-bottom: 1px solid #333; }
-    .markdown-section p { color: #bbbbbb !important; font-size: 17px; }
-
-    /* 7. 页脚与 Slogan */
-    .slogan-area { text-align: center; padding: 60px 0 20px; }
-    .en-slogan { font-family: "Georgia", serif; font-style: italic; font-size: 20px; color: #666; }
-    .footer { text-align: center; padding: 20px 0 60px; color: #444; font-size: 13px; text-transform: uppercase; }
-
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 48px; }
-      .nav-bar { display: none; }
+    .custom-footer {
+      color: #bbbbbb !important; /* 浅灰色，保证清晰 */
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      margin: 0 15%;
     }
+
+    .content { background: #0f1115 !important; position: static !important; width: 100% !important; left: 0 !important; }
+    .sidebar, .sidebar-toggle { display: none !important; }
   </style>
 </head>
 <body>
 
-  <!-- 品牌标识 -->
   <a href="#/" class="brand-logo">BaiYongQiang</a>
 
-  <!-- 首页封面 -->
   <div id="main-cover">
     <div class="nav-bar">
       <a href="#/retail">零售</a>
@@ -140,58 +93,48 @@
       <a href="#/about">关于</a>
     </div>
 
-    <div class="hero">
-      <h1>BaiYongQiang</h1>
-      <p>零售行业数字化解决方案从业者<br>技术 × 商业 × 长期认知</p>
+    <div class="main-content">
+      <div class="hero">
+        <h1>BaiYongQiang</h1>
+        <p>零售行业数字化解决方案从业者<br>技术 × 商业 × 长期认知</p>
+      </div>
+      <div class="grid">
+        <a href="#/retail" class="card"><h3>🏪 零售信息化</h3><p>门店系统与运营优化实践</p></a>
+        <a href="#/ai" class="card"><h3>🤖 AI 探索</h3><p>技术在商业场景中的增效应用</p></a>
+        <a href="#/invest-logic" class="card"><h3>💰 投资与经济</h3><p>市场与长期价值判断</p></a>
+      </div>
     </div>
 
-    <div class="grid">
-      <a href="#/retail" class="card">
-        <h3>🏪 零售信息化</h3>
-        <p>门店系统与运营优化实践</p>
-      </a>
-      <a href="#/ai" class="card">
-        <h3>🤖 AI 探索</h3>
-        <p>技术在商业场景中的增效应用</p>
-      </a>
-      <a href="#/invest-logic" class="card">
-        <h3>💰 投资与经济</h3>
-        <p>市场与长期价值判断</p>
-      </a>
-    </div>
-
-    <div class="slogan-area">
+    <div class="bottom-section">
       <p class="en-slogan">"Reborn with AI, defined by lifelong learning."</p>
-    </div>
-
-    <div class="footer">
-      © BaiYongQiang · Digital Garden 2026
+      <footer class="custom-footer">
+        © 2026 BAIYONGQIANG · DIGITAL GARDEN
+      </footer>
     </div>
   </div>
 
-  <div id="app">加载中...</div>
+  <div id="app"></div>
 
   <script>
     window.$docsify = {
-      name: 'BaiYongQiang',
-      loadSidebar: false,
+      hideSidebar: true,
+      auto2top: true,
+      // 关键：只有非首页才加载
       mounted: function() { checkRoute(); }
     };
 
     function checkRoute() {
-      const cover = document.getElementById('main-cover');
-      if (!window.location.hash || window.location.hash === '#/') {
-        cover.style.display = 'block';
+      const isHome = !window.location.hash || window.location.hash === '#/';
+      if (isHome) {
         document.body.classList.remove('is-article');
       } else {
-        cover.style.display = 'none';
         document.body.classList.add('is-article');
-        window.scrollTo(0, 0);
       }
     }
-    window.addEventListener('hashchange', checkRoute);
-  </script>
 
+    window.addEventListener('hashchange', checkRoute);
+    checkRoute();
+  </script>
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>
 </html>
