@@ -1,53 +1,186 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>BaiYongQiang 的数字复盘空间</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <style>
-  /* 调整侧边栏标题颜色，让它更有层次感 */
-  .sidebar ul li strong {
-    color: #2c3e50 !important;
-    font-size: 1.1rem;
-  }
-  
-  /* 调整链接点击后的颜色 */
-  .sidebar ul li a {
-    color: #505d6b;
-    font-weight: normal;
+<meta charset="UTF-8">
+<title>BaiYongQiang | 零售数字化专家</title>
+
+<style>
+  /* 基础全局样式 */
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #0f1115; /* 深色背景 */
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  /* 悬停时的视觉反馈 */
-  .sidebar ul li a:hover {
-    color: #42b983;
-    text-decoration: underline;
+  /* 右上角导航 */
+  .nav {
+    position: absolute;
+    top: 40px;
+    right: 8%;
+    z-index: 100;
+  }
+  .nav a {
+    color: #888;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  .nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
   }
 
-  /* 选中状态的加粗 */
-  .sidebar ul li.active > a {
-    color: #42b983 !important;
-    font-weight: bold !important;
+  /* 顶部标题区 */
+  .hero {
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+  }
+  .hero h1 {
+    font-size: 64px;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -2px;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    color: #888;
+    margin-top: 20px;
+    font-size: 20px;
+    max-width: 600px;
+  }
+
+  /* 核心功能卡片 */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 10%;
+  }
+  .card {
+    background: #1a1d24;
+    border-radius: 16px;
+    padding: 40px 30px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid #222;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    background: #222633;
+    border-color: #444;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  }
+  .card h3 {
+    margin: 0 0 15px;
+    font-size: 22px;
+    color: #fff;
+  }
+  .card p {
+    color: #777;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* 英文宣言区域 - 显著调亮 */
+  .slogan-area {
+    text-align: center;
+    padding: 100px 0 30px;
+  }
+  .en-slogan {
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 22px; 
+    color: #999; /* 调亮后的颜色，确保清晰可见 */
+    letter-spacing: 0.5px;
+    transition: 0.4s;
+    opacity: 0.9;
+  }
+  .en-slogan:hover {
+    color: #fff;
+    opacity: 1;
+  }
+
+  /* 页脚 - 适当提亮 */
+  .footer {
+    text-align: center;
+    padding: 50px 0 80px;
+    color: #555; /* 调亮后的版权信息 */
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* 响应式适配 */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; gap: 20px; }
+    .hero { height: auto; padding: 100px 10% 60px; }
+    .hero h1 { font-size: 48px; }
+    .nav { display: none; } /* 手机端隐藏导航，保持简洁 */
   }
 </style>
 </head>
+
 <body>
-  <div id="app">正在加载，请稍候...</div>
- <script>
-    window.$docsify = {
-      name: 'BaiYongQiang',
-      loadSidebar: true,
-      subMaxLevel: 2,
-      auto2top: true,
-      // 关键增加：强制从根目录读取文件
-      basePath: '/', 
-      // 强制指定侧边栏文件名
-      homepage: 'README.md'
+
+  <!-- 顶部导航 -->
+  <div class="nav">
+    <a href="#/retail">零售</a>
+    <a href="#/ai">AI</a>
+    <a href="#/invest-logic">投资</a>
+    <a href="#/about">关于</a>
+  </div>
+
+  <!-- 主标题 -->
+  <div class="hero">
+    <h1>BaiYongQiang</h1>
+    <p>零售行业数字化解决方案从业者<br>技术 × 商业 × 长期认知</p>
+  </div>
+
+  <!-- 功能卡片 -->
+  <div class="grid">
+    <div class="card" onclick="go('retail/')">
+      <h3>🏪 零售信息化</h3>
+      <p>门店系统与运营优化实践</p>
+    </div>
+
+    <div class="card" onclick="go('ai/')">
+      <h3>🤖 AI 探索</h3>
+      <p>技术在商业场景中的增效应用</p>
+    </div>
+
+    <div class="card" onclick="go('invest-logic/')">
+      <h3>💰 投资与经济</h3>
+      <p>市场与长期价值判断</p>
+    </div>
+  </div>
+
+  <!-- 英文宣言 -->
+  <div class="slogan-area">
+    <p class="en-slogan">"Reborn with AI, defined by lifelong learning."</p>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    © BaiYongQiang · Digital Garden 2026
+  </div>
+
+  <script>
+    function go(path){
+      // 跳转逻辑：Docsify 默认使用 hash 路由
+      window.location.href = "/#/" + path;
     }
   </script>
-<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 
 </body>
 </html>
