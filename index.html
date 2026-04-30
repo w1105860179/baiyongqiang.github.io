@@ -177,9 +177,22 @@
 
  <script>
   function go(path) {
-    // 去掉开头的斜杠，直接操作 hash
-    // 这样点击时，浏览器地址栏会变成 .../#/ai
-    window.location.hash = "/" + path;
+    // 1. 规范化路径，去掉末尾可能存在的斜杠
+    const cleanPath = path.replace(/\/$/, "");
+    
+    // 2. 构造完整的 Hash 路径
+    const newHash = "#/" + cleanPath;
+    
+    // 3. 执行跳转
+    if (window.location.hash !== newHash) {
+      window.location.hash = newHash;
+      
+      // 4. 【关键步骤】如果页面没动，强制刷新（解决部分环境下不渲染的问题）
+      // 这能确保无论 Docsify 处于什么状态，都会重新加载新内容
+      if (typeof $docsify !== 'undefined') {
+          window.location.reload(); 
+      }
+    }
   }
 </script>
 
