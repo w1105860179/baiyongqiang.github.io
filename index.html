@@ -152,7 +152,8 @@
       auto2top: true,
     };
 
-    function handleRoute() {
+    function handleRoute() 
+    {
       const isHome = !window.location.hash || window.location.hash === '#/';
       if (isHome) {
         document.body.classList.remove('is-article');
@@ -161,11 +162,12 @@
         document.body.classList.add('is-article');
         document.body.classList.remove('home-page');
       }
+window.scrollTo(0, 0);
     }
 
     window.addEventListener('hashchange', handleRoute);
     window.addEventListener('load', handleRoute);
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
 </html>
