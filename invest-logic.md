@@ -36,6 +36,6 @@
 *   **容错空间**：永远不要把自己置于“必须赢”的悬崖边缘，留足安全边际，才是长存之道。
 
 ![认知与财富](images/invest_logic_future.png)
-
+* [：钱从哪里来？](invest-02.md)
 ---
 *Last updated: May 2026*
