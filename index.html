@@ -162,10 +162,13 @@
         document.body.classList.add('is-article');
         document.body.classList.remove('home-page');
       }
-setTimeout(function() {
+plugins: [
+    function(hook) {
+      hook.doneEach(function() {
         window.scrollTo(0, 0);
-    }, 100);
-      //setTimeout 延迟 100 毫秒执行
+      });
+    }
+  ]
     }
 
     window.addEventListener('hashchange', handleRoute);
