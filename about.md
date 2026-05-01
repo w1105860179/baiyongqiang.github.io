@@ -20,5 +20,31 @@
 - 投资与经济
 
 ---
+## 联系我
+
+如果您有任何关于零售数字化或 AI 应用的建议，欢迎通过邮件与我联系：
+
+<div style="background: #161920; border: 1px solid #333; padding: 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px;">
+  <span id="email-text" style="color: #fff; font-family: monospace;">hi@baiyongqiang.com</span>
+  <button onclick="copyEmail()" style="background: #333; color: #fff; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+    点击复制
+  </button>
+</div>
+
+<script>
+function copyEmail() {
+  const email = document.getElementById('email-text').innerText;
+  navigator.clipboard.writeText(email).then(() => {
+    const btn = event.target;
+    const originalText = btn.innerText;
+    btn.innerText = '已复制！';
+    btn.style.background = '#28a745';
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.style.background = '#333';
+    }, 2000);
+  });
+}
+</script>
 
 
