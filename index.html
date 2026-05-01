@@ -12,17 +12,21 @@
       margin: 0;
       padding: 0;
       background-color: #0f1115 !important;
-      height: 100%;
-      /* 防止首页出现多余滚动条 */
-      overflow: hidden; 
+      /* 这里的修改是关键：不要在 html 层级锁死 overflow */
     }
     
-    /* 当进入文章页时，允许滚动 */
-    body.is-article {
-      overflow: auto;
+    body.home-page {
+      height: 100vh;
+      overflow: hidden; 
     }
 
-    /* 2. 首页封面：强制占满全屏，不留缝隙 */
+    /* 当进入文章页时，恢复正常滚动 */
+    body.is-article {
+      height: auto;
+      overflow: auto !important;
+    }
+
+    /* 2. 首页封面 */
     #main-cover {
       position: absolute;
       top: 0;
@@ -41,7 +45,7 @@
       display: none !important;
     }
 
-    /* 3. Docsify 容器：首页时物理高度归零，彻底消灭空白 */
+    /* 3. Docsify 容器 */
     #app {
       height: 0;
       overflow: hidden;
@@ -82,7 +86,7 @@
     .card h3 { color: #fff; margin: 0 0 10px; font-size: 20px; }
     .card p { color: #999; font-size: 14px; }
 
-    /* 6. 底部区域颜色确认（已调亮） */
+    /* 6. 底部区域 */
     .bottom-section { text-align: center; padding-bottom: 50px; }
     .en-slogan { 
       font-family: "Georgia", serif; font-style: italic; 
@@ -94,19 +98,19 @@
       font-size: 12px;
       letter-spacing: 2px;
       border-top: 1px solid #333;
-      padding-top: 25px;
+      padding: 25px 0;
       margin: 0 15%;
     }
 
     /* Docsify 文章页样式调整 */
     .sidebar, .sidebar-toggle { display: none !important; }
-    .content { position: static !important; width: 100% !important; left: 0 !important; }
+    .content { position: static !important; width: 100% !important; left: 0 !important; padding-top: 60px !important;}
 
     @media (max-width: 900px) {
       .grid { grid-template-columns: 1fr; }
       #main-cover { height: 100vh; overflow-y: auto; position: relative; }
       .nav-bar { display: none; }
-      body { overflow: auto; }
+      body.home-page { overflow: auto; }
     }
   </style>
 </head>
@@ -142,33 +146,36 @@
     </div>
   </div>
 
-  <!-- 初始状态下高度为 0 -->
-  <div id="app"></div>
+  <div id="app">载入中...</div>
 
   <script>
     window.$docsify = {
       name: 'BaiYongQiang',
       hideSidebar: true,
       auto2top: true,
+      // 核心修复：plugins 必须在这里！
+      plugins: [
+        function(hook) {
+          hook.doneEach(function() {
+            // 每次渲染完文章，强制滚回顶部
+            window.scrollTo(0, 0);
+            // 针对极少数浏览器的补偿
+            document.documentElement.scrollTop = 0;
+          });
+        }
+      ]
     };
 
-    function handleRoute() 
-    {
+    function handleRoute() {
       const isHome = !window.location.hash || window.location.hash === '#/';
       if (isHome) {
         document.body.classList.remove('is-article');
         document.body.classList.add('home-page');
+        window.scrollTo(0, 0);
       } else {
         document.body.classList.add('is-article');
         document.body.classList.remove('home-page');
       }
-plugins: [
-    function(hook) {
-      hook.doneEach(function() {
-        window.scrollTo(0, 0);
-      });
-    }
-  ]
     }
 
     window.addEventListener('hashchange', handleRoute);
