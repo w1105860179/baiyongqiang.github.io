@@ -128,8 +128,8 @@
         <p>零售行业数字化解决方案从业者<br>技术 × 商业 × 长期认知</p>
       </div>
       <div class="grid">
-        <a href="#/retail" class="card"><h3>🏪 零售信息化</h3><p>门店系统与运营优化实践</p></a>
-        <a href="#/ai" class="card"><h3>🤖 AI 探索</h3><p>技术在商业场景中的增效应用</p></a>
+        <a href="#/retail" class="card"><h3>🏪 零售信息化</h3><p>门店系统与运营优化</p></a>
+        <a href="#/ai" class="card"><h3>🤖 AI 探索</h3><p>技术在场景中的应用</p></a>
         <a href="#/invest-logic" class="card"><h3>💰 投资与经济</h3><p>市场与长期价值判断</p></a>
       </div>
     </div>
@@ -162,7 +162,10 @@
         document.body.classList.add('is-article');
         document.body.classList.remove('home-page');
       }
-window.scrollTo(0, 0);
+setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 100);
+      //setTimeout 延迟 100 毫秒执行
     }
 
     window.addEventListener('hashchange', handleRoute);
