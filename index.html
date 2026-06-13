@@ -2,115 +2,137 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>BaiYongQiang | 零售数字化专家</title>
+  <title>BaiYongQiang | 投资 · 认知 · 成长</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BaiYongQiang 的个人站点——投资思考、认知成长、AI实践。记录思考，沉淀认知。">
+  <meta property="og:title" content="BaiYongQiang">
+  <meta property="og:description" content="投资思考、认知成长、AI实践。个人知识输出平台。">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
 
   <style>
-    /* 1. 基础布局控制 */
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background-color: #0f1115 !important;
-      /* 这里的修改是关键：不要在 html 层级锁死 overflow */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
-    
-    body.home-page {
-      height: 100vh;
-      overflow: hidden; 
-    }
+    body.home-page { height: 100vh; overflow: hidden; }
+    body.is-article { height: auto; overflow: auto !important; }
 
-    /* 当进入文章页时，恢复正常滚动 */
-    body.is-article {
-      height: auto;
-      overflow: auto !important;
-    }
-
-    /* 2. 首页封面 */
     #main-cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
       background: #0f1115;
-      z-index: 10;
-      box-sizing: border-box;
+      z-index: 10; box-sizing: border-box;
+      overflow-y: auto;
+      padding-bottom: 60px;
     }
+    body.is-article #main-cover { display: none !important; }
 
-    body.is-article #main-cover {
-      display: none !important;
-    }
-
-    /* 3. Docsify 容器 */
-    #app {
-      height: 0;
-      overflow: hidden;
-    }
-    body.is-article #app {
-      height: auto;
-      overflow: visible;
-      display: block;
-    }
-
-    /* 4. 导航与品牌 */
-    .nav-bar { padding: 40px 8% 0 0; text-align: right; }
-    .nav-bar a { color: #ddd; text-decoration: none; margin-left: 30px; font-size: 15px; }
+    #app { height: 0; overflow: hidden; }
+    body.is-article #app { height: auto; overflow: visible; display: block; }
 
     .brand-logo {
-      position: fixed; top: 30px; left: 40px; z-index: 9999;
-      color: #fff; text-decoration: none; font-size: 18px; font-weight: bold;
+      position: fixed; top: 24px; left: 32px; z-index: 9999;
+      color: #fff; text-decoration: none; font-size: 17px; font-weight: 600;
       display: none;
     }
     body.is-article .brand-logo { display: block; }
 
-    /* 5. 核心内容区 */
-    .hero { padding: 60px 10% 40px; }
+    .nav-bar { padding: 32px 8% 0 0; text-align: right; }
+    .nav-bar a {
+      color: #aaa; text-decoration: none; margin-left: 28px;
+      font-size: 14px; transition: color 0.2s;
+    }
+    .nav-bar a:hover { color: #fff; }
+
+    .hero { padding: 80px 10% 20px; }
     .hero h1 {
-      font-size: 64px; margin: 0; font-weight: 700;
+      font-size: 52px; margin: 0; font-weight: 700;
       background: linear-gradient(to bottom, #ffffff, #999);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      line-height: 1.2;
     }
-    .hero p { color: #bbb; font-size: 18px; margin-top: 15px; line-height: 1.6; }
+    .hero .subtitle { color: #999; font-size: 15px; margin-top: 12px; line-height: 1.6; }
+    .hero .tagline { color: #666; font-size: 13px; margin-top: 6px; }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 10%; }
-    .card {
-      background: #161920; border-radius: 12px; padding: 30px;
-      border: 1px solid #333; text-decoration: none; transition: 0.3s;
+    .status-bar {
+      margin: 0 10%; padding: 20px 24px;
+      background: #161920; border-radius: 10px;
+      border: 1px solid #2a2d35;
     }
-    .card:hover { border-color: #777; transform: translateY(-5px); }
-    .card h3 { color: #fff; margin: 0 0 10px; font-size: 20px; }
-    .card p { color: #999; font-size: 14px; }
+    .status-bar .row { display: flex; gap: 40px; flex-wrap: wrap; }
+    .status-bar .item { flex: 1; min-width: 140px; }
+    .status-bar .label { color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .status-bar .value { color: #ddd; font-size: 14px; }
 
-    /* 6. 底部区域 */
-    .bottom-section { text-align: center; padding-bottom: 50px; }
-    .en-slogan { 
-      font-family: "Georgia", serif; font-style: italic; 
-      font-size: 18px; color: #ffffff !important; 
-      margin-bottom: 30px;
+    .section { padding: 0 10%; margin-top: 48px; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .section-header .emoji { font-size: 16px; }
+    .section-header .title { color: #fff; font-size: 18px; font-weight: 600; }
+    .section-header .count { color: #666; font-size: 13px; }
+
+    .article-list { display: flex; flex-direction: column; gap: 0; }
+    .article-item {
+      display: block; text-decoration: none;
+      padding: 20px 0; border-bottom: 1px solid #1e2128;
+      transition: padding-left 0.2s;
+    }
+    .article-item:hover { padding-left: 8px; }
+    .article-item:last-child { border-bottom: none; }
+    .article-item .meta {
+      color: #555; font-size: 12px; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .article-item .meta .cat {
+      padding: 2px 8px; border-radius: 10px;
+      font-size: 11px;
+      background: #1e2128; color: #888;
+    }
+    .article-item .title { color: #eee; font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .article-item .excerpt { color: #666; font-size: 13px; line-height: 1.6; }
+
+    .tools-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .tool-card {
+      background: #161920; border: 1px solid #2a2d35; border-radius: 10px;
+      padding: 20px 24px; text-decoration: none; flex: 1; min-width: 160px;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: #555; }
+    .tool-card .tool-icon { font-size: 20px; margin-bottom: 8px; }
+    .tool-card .tool-name { color: #eee; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .tool-card .tool-desc { color: #666; font-size: 12px; }
+
+    .bottom-section { text-align: center; padding: 60px 0 40px; }
+    .en-slogan {
+      font-family: "Georgia", serif; font-style: italic;
+      font-size: 16px; color: #888; margin-bottom: 24px;
     }
     .custom-footer {
-      color: #bbbbbb !important;
-      font-size: 12px;
-      letter-spacing: 2px;
-      border-top: 1px solid #333;
-      padding: 25px 0;
-      margin: 0 15%;
+      color: #555; font-size: 12px;
+      letter-spacing: 1px;
+      border-top: 1px solid #1e2128;
+      padding: 20px 0; margin: 0 15%;
     }
+    .custom-footer a { color: #777; text-decoration: none; }
+    .custom-footer a:hover { color: #bbb; }
 
-    /* Docsify 文章页样式调整 */
-    .sidebar, .sidebar-toggle { display: none !important; }
-    .content { position: static !important; width: 100% !important; left: 0 !important; padding-top: 60px !important;}
+    .content { position: static !important; width: 100% !important; left: 0 !important; padding-top: 60px !important; }
 
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-      #main-cover { height: 100vh; overflow-y: auto; position: relative; }
-      .nav-bar { display: none; }
-      body.home-page { overflow: auto; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .hero { padding: 60px 5% 16px; }
+      .section { padding: 0 5%; }
+      .status-bar { margin: 0 5%; }
+      .nav-bar { padding: 24px 5% 0 0; }
+      .nav-bar a { margin-left: 18px; font-size: 13px; }
+      .status-bar .row { gap: 20px; }
     }
   </style>
 </head>
@@ -120,28 +142,111 @@
 
   <div id="main-cover">
     <div class="nav-bar">
+      <a href="#/">首页</a>
+      <a href="#/tools">工具</a>
       <a href="#/retail">零售</a>
-      <a href="#/ai">AI</a>
-      <a href="#/invest-logic">投资</a>
       <a href="#/about">关于</a>
     </div>
 
-    <div class="main-content">
-      <div class="hero">
-        <h1>BaiYongQiang</h1>
-        <p>零售行业数字化解决方案从业者<br>技术 × 商业 × 长期认知</p>
+    <div class="hero">
+      <h1>BaiYongQiang</h1>
+      <p class="subtitle">投资思考 · 认知成长 · AI 实践</p>
+      <p class="tagline">零售数字化从业者，持续学习者。在这里记录思考，沉淀认知。</p>
+    </div>
+
+    <div class="status-bar">
+      <div class="row">
+        <div class="item">
+          <div class="label">最近在读</div>
+          <div class="value">投资、认知心理学、比特币</div>
+        </div>
+        <div class="item">
+          <div class="label">最近在写</div>
+          <div class="value">公众号「深海湖说」周更</div>
+        </div>
+        <div class="item">
+          <div class="label">最近在搭</div>
+          <div class="value">这个网站和投资小工具</div>
+        </div>
       </div>
-      <div class="grid">
-        <a href="#/retail" class="card"><h3>🏪 零售信息化</h3><p>门店系统与运营优化</p></a>
-        <a href="#/ai" class="card"><h3>🤖 AI 探索</h3><p>技术在场景中的应用</p></a>
-        <a href="#/invest-logic" class="card"><h3>💰 投资与经济</h3><p>市场与长期价值判断</p></a>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="title">文章</span>
+        <span class="count">10 篇</span>
+      </div>
+      <div class="article-list">
+
+        <a href="#/articles/opportunity-cost" class="article-item">
+          <div class="meta"><span class="cat">投资</span> 2026-06</div>
+          <div class="title">那你是怎么稀释机会成本的呢？</div>
+          <div class="excerpt">把全部资金押在单个标的上，你赌的不只是它会涨——你还赌了「其他所有可能性都不如它」。</div>
+        </a>
+
+        <a href="#/articles/sunk-cost" class="article-item">
+          <div class="meta"><span class="cat">认知</span> 2026-06</div>
+          <div class="title">沉没成本：为什么我们总是舍不得放手</div>
+          <div class="excerpt">电影票、公交车、景区、电信诈骗——「来都来了」就是最毒的鸡汤。</div>
+        </a>
+
+        <a href="#/articles/why-popmart" class="article-item">
+          <div class="meta"><span class="cat">投资</span></div>
+          <div class="title">为什么是泡泡玛特</div>
+          <div class="excerpt">段永平像当年看好乔布斯一样看好王宁。泡泡玛特符合高频、广阔、刚需吗？</div>
+        </a>
+
+        <a href="#/articles/complex-not-advanced" class="article-item">
+          <div class="meta"><span class="cat">比特币</span></div>
+          <div class="title">复杂并不等于高级</div>
+          <div class="excerpt">人类天然把复杂误认为高级。信任的问题，本质上不是技术问题，是人性问题。</div>
+        </a>
+
+        <a href="#/articles/invest-vs-speculate" class="article-item">
+          <div class="meta"><span class="cat">投资</span></div>
+          <div class="title">说下投资和投机</div>
+          <div class="excerpt">投资与投机都涉及低买高卖，但底层逻辑完全不同。赚很重要，不赔更重要。</div>
+        </a>
+
+        <a href="#/articles/how-to-grow" class="article-item">
+          <div class="meta"><span class="cat">成长</span></div>
+          <div class="title">怎么能成长的最快？</div>
+          <div class="excerpt">单维度比长度，二维度比面积，三维度比体积。成长也是多维度的竞争。</div>
+        </a>
+
+        <a href="#/articles/losing-face" class="article-item">
+          <div class="meta"><span class="cat">成长</span></div>
+          <div class="title">丢人就像丢钱一样</div>
+          <div class="excerpt">「不要怕丢人，丢人就像丢钱一样，越丢越少」——班主任这句话，用了十几年才懂。</div>
+        </a>
+
+        <a href="#/articles/changed-views" class="article-item">
+          <div class="meta"><span class="cat">观察</span></div>
+          <div class="title">曾经坚持，但现在改变的观点</div>
+          <div class="excerpt">修路、教育、公司——换个角度，看到的是完全不同的东西。</div>
+        </a>
+
+        <a href="#/articles/hands-on-ai" class="article-item">
+          <div class="meta"><span class="cat">AI</span></div>
+          <div class="title">也算亲手用了AI</div>
+          <div class="excerpt">用 AI 搭建网站，从域名到代码。一个技术转销售的人重新捡起了键盘。</div>
+        </a>
+
+        <a href="#/articles/micro-actions" class="article-item">
+          <div class="meta"><span class="cat">成长</span></div>
+          <div class="title">开启微行动，成就大改变</div>
+          <div class="excerpt">改变不一定需要惊天动地的决心，从一个小动作开始就够了。</div>
+        </a>
+
       </div>
     </div>
 
     <div class="bottom-section">
       <p class="en-slogan">"Reborn with AI, defined by lifelong learning."</p>
       <footer class="custom-footer">
-        © 2026 BAIYONGQIANG · DIGITAL GARDEN
+        <a href="#/about">关于</a> &nbsp;·&nbsp;
+        <a href="#/tools">工具</a> &nbsp;·&nbsp;
+        © 2026 BAIYONGQIANG
       </footer>
     </div>
   </div>
@@ -153,21 +258,10 @@
       name: 'BaiYongQiang',
       hideSidebar: true,
       auto2top: true,
-      // 核心修复：plugins 必须在这里！
-      plugins: [
-        function(hook) {
-          hook.doneEach(function() {
-            // 每次渲染完文章，强制滚回顶部
-            window.scrollTo(0, 0);
-            // 针对极少数浏览器的补偿
-            document.documentElement.scrollTop = 0;
-          });
-        }
-      ]
     };
 
     function handleRoute() {
-      const isHome = !window.location.hash || window.location.hash === '#/';
+      var isHome = !window.location.hash || window.location.hash === '#/';
       if (isHome) {
         document.body.classList.remove('is-article');
         document.body.classList.add('home-page');
@@ -175,25 +269,26 @@
       } else {
         document.body.classList.add('is-article');
         document.body.classList.remove('home-page');
+        window.scrollTo(0, 0);
       }
     }
 
     window.addEventListener('hashchange', handleRoute);
     window.addEventListener('load', handleRoute);
+
     function copyEmail(email, btn) {
-    navigator.clipboard.writeText(email).then(() => {
-        const originalText = btn.innerText;
-        btn.innerText = '已复制！';
+      navigator.clipboard.writeText(email).then(function() {
+        var original = btn.innerText;
+        btn.innerText = '已复制';
         btn.style.background = '#28a745';
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = '#333';
+        setTimeout(function() {
+          btn.innerText = original;
+          btn.style.background = '#333';
         }, 2000);
-    }).catch(err => {
-        console.error('复制失败: ', err);
+      }).catch(function() {
         alert('复制失败，请手动复制: ' + email);
-    });
-}
+      });
+    }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 </body>
